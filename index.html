@@ -4,82 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Omnidirectional Wheel Drive System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
-      
-      body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #e0e7ff;
-      }
-      
-      /* Liquid Gradient Background */
-      .liquid-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        background: 
-          radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.4), transparent 25%),
-          radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.4), transparent 25%),
-          radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.2), transparent 50%);
-        background-size: 200% 200%;
-        animation: liquidMove 15s ease infinite alternate;
-        overflow: hidden;
-      }
-
-      .liquid-bg::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          from 0deg at 50% 50%,
-          #e0e7ff 0deg,
-          #c7d2fe 60deg,
-          #a5b4fc 120deg,
-          #e0e7ff 180deg,
-          #c7d2fe 240deg,
-          #a5b4fc 300deg,
-          #e0e7ff 360deg
-        );
-        filter: blur(80px);
-        opacity: 0.6;
-        animation: rotate 20s linear infinite;
-        z-index: -1;
-      }
-
-      @keyframes liquidMove {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
-      }
-
-      @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script type="importmap">
 {
   "imports": {
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "three": "https://aistudiocdn.com/three@^0.181.2",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite": "https://aistudiocdn.com/vite@^7.2.4",
     "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
-    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
-    "three": "https://aistudiocdn.com/three@^0.181.2"
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1"
   }
 }
 </script>
@@ -87,5 +25,6 @@
   <body>
     <div class="liquid-bg"></div>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
