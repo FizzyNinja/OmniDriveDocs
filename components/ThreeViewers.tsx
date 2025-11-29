@@ -147,18 +147,18 @@ const OmniWheel = () => {
 const InteractionOverlay = ({ title, type = "model" }: { title: string, type?: string }) => (
   <>
     <div className="absolute top-4 left-4 z-10 pointer-events-none">
-      <div className="bg-white/40 backdrop-blur-md px-3 py-2 rounded-xl border border-white/40 text-slate-800 shadow-lg">
+      <div className="bg-white/90 backdrop-blur-md px-3 py-2 rounded-xl border border-slate-200/50 text-slate-800 shadow-sm">
         <p className="font-bold text-sm flex items-center gap-2">
-           <Move3d size={14} className="text-indigo-600" />
+           <Move3d size={14} className="text-indigo-500" />
            {title}
         </p>
-        <p className="text-[10px] text-slate-600 uppercase tracking-wider mt-0.5 ml-5">
+        <p className="text-[10px] text-slate-500 uppercase tracking-wider mt-0.5 ml-5">
           {type} Visualization
         </p>
       </div>
     </div>
     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-1000">
-        <div className="bg-black/60 backdrop-blur-md text-white/90 text-[11px] px-4 py-1.5 rounded-full flex items-center gap-3 shadow-xl">
+        <div className="bg-black/70 backdrop-blur-md text-white/90 text-[11px] px-4 py-1.5 rounded-full flex items-center gap-3 shadow-xl">
             <span className="flex items-center gap-1"><MousePointer2 size={10} /> Interactive</span>
             <span className="w-1 h-1 bg-white/30 rounded-full"></span>
             <span>Keyboard Supported</span>
@@ -213,10 +213,10 @@ const ViewerControls = ({
          <div className="absolute bottom-4 right-4 flex flex-col gap-2 pointer-events-auto">
             
             {/* Zoom Controls */}
-            <div className="bg-white/40 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 p-1 flex flex-col gap-1">
+            <div className="bg-white/90 backdrop-blur rounded-lg shadow-sm border border-slate-200 p-1 flex flex-col gap-1">
                 <button 
                   onClick={(e) => { e.stopPropagation(); handleZoom(1); }}
-                  className="p-1.5 hover:bg-white/50 rounded-xl text-slate-700 transition active:bg-white/70" 
+                  className="p-1.5 hover:bg-slate-100 rounded text-slate-700 transition active:bg-slate-200" 
                   title="Zoom In"
                   aria-label="Zoom In"
                 >
@@ -224,7 +224,7 @@ const ViewerControls = ({
                 </button>
                 <button 
                   onClick={(e) => { e.stopPropagation(); handleZoom(-1); }}
-                  className="p-1.5 hover:bg-white/50 rounded-xl text-slate-700 transition active:bg-white/70" 
+                  className="p-1.5 hover:bg-slate-100 rounded text-slate-700 transition active:bg-slate-200" 
                   title="Zoom Out"
                    aria-label="Zoom Out"
                 >
@@ -233,10 +233,10 @@ const ViewerControls = ({
             </div>
 
             {/* Playback/Reset Controls */}
-             <div className="bg-white/40 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 p-1 flex flex-col gap-1">
+             <div className="bg-white/90 backdrop-blur rounded-lg shadow-sm border border-slate-200 p-1 flex flex-col gap-1">
                 <button 
                   onClick={(e) => { e.stopPropagation(); setIsAutoRotating(!isAutoRotating); }}
-                  className={`p-1.5 hover:bg-white/50 rounded-xl transition active:bg-white/70 ${isAutoRotating ? 'text-indigo-600 bg-white/40' : 'text-slate-700'}`}
+                  className={`p-1.5 hover:bg-slate-100 rounded transition active:bg-slate-200 ${isAutoRotating ? 'text-indigo-600 bg-indigo-50' : 'text-slate-700'}`}
                   title={isAutoRotating ? "Pause Rotation" : "Start Rotation"}
                    aria-label="Toggle Rotation"
                 >
@@ -244,7 +244,7 @@ const ViewerControls = ({
                 </button>
                  <button 
                   onClick={(e) => { e.stopPropagation(); handleReset(); }}
-                  className="p-1.5 hover:bg-white/50 rounded-xl text-slate-700 transition active:bg-white/70" 
+                  className="p-1.5 hover:bg-slate-100 rounded text-slate-700 transition active:bg-slate-200" 
                   title="Reset View"
                    aria-label="Reset View"
                 >
@@ -262,15 +262,15 @@ const ViewerControls = ({
 export const MainAssemblyViewer = () => {
   return (
     <div 
-      className="group w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl relative outline-none focus:ring-4 focus:ring-indigo-500/30 transition-all touch-none bg-slate-900/40 backdrop-blur-xl border border-white/10"
+      className="group w-full h-[500px] rounded-2xl overflow-hidden shadow-xl relative outline-none focus:ring-4 focus:ring-indigo-500/20 transition-all touch-none bg-gradient-to-b from-slate-800 to-slate-900"
       tabIndex={0}
       role="application"
       aria-label="3D Model Viewer"
     >
       <div className="absolute top-4 left-4 z-10 pointer-events-none">
-        <div className="bg-white/10 backdrop-blur-xl px-3 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
+        <div className="bg-white/10 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 text-white shadow-lg">
             <p className="font-bold text-sm flex items-center gap-2">
-            <Move3d size={14} className="text-indigo-300" />
+            <Move3d size={14} className="text-indigo-400" />
             Omni-Wheel Assembly
             </p>
         </div>
@@ -291,30 +291,30 @@ export const GearComparisonViewer = () => {
 
   return (
     <div 
-      className="group w-full h-[400px] bg-white/30 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/40 relative flex flex-col outline-none focus:ring-4 focus:ring-indigo-500/30 touch-none shadow-xl"
+      className="group w-full h-[400px] bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 relative flex flex-col outline-none focus:ring-4 focus:ring-indigo-500/20 touch-none"
       tabIndex={0}
       role="application"
       aria-label="Gear Comparison Viewer"
     >
        <div className="absolute top-4 left-4 z-10 pointer-events-none">
-        <div className="bg-white/60 backdrop-blur-xl px-3 py-2 rounded-2xl border border-white/40 shadow-sm">
-            <p className="font-bold text-sm flex items-center gap-2 text-slate-800">
-            <Move3d size={14} className="text-indigo-600" />
+        <div className="bg-white/80 backdrop-blur-md px-3 py-2 rounded-xl border border-slate-200 shadow-sm">
+            <p className="font-bold text-sm flex items-center gap-2 text-slate-700">
+            <Move3d size={14} className="text-indigo-500" />
             Gear Geometry
             </p>
         </div>
       </div>
 
-       <div className="absolute top-4 right-4 z-10 bg-white/60 backdrop-blur-xl p-1 rounded-2xl shadow-lg border border-white/40 flex gap-1">
+       <div className="absolute top-4 right-4 z-10 bg-white p-1 rounded-lg shadow-sm border border-slate-200 flex gap-1">
             <button 
                 onClick={() => setGearType(GearType.STRAIGHT)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all ${gearType === GearType.STRAIGHT ? 'bg-indigo-600 text-white shadow-md' : 'bg-transparent text-slate-600 hover:bg-white/50'}`}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${gearType === GearType.STRAIGHT ? 'bg-indigo-600 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-100'}`}
             >
                 Straight Cut
             </button>
             <button 
                 onClick={() => setGearType(GearType.HELICAL)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all ${gearType === GearType.HELICAL ? 'bg-indigo-600 text-white shadow-md' : 'bg-transparent text-slate-600 hover:bg-white/50'}`}
+                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${gearType === GearType.HELICAL ? 'bg-indigo-600 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-100'}`}
             >
                 Helical
             </button>
@@ -335,15 +335,15 @@ export const GearComparisonViewer = () => {
 export const RingGearViewer = () => {
     return (
       <div 
-        className="group w-full h-[300px] bg-slate-900/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl relative outline-none focus:ring-4 focus:ring-indigo-500/30 touch-none border border-white/10"
+        className="group w-full h-[300px] bg-slate-900 rounded-2xl overflow-hidden shadow-lg relative outline-none focus:ring-4 focus:ring-indigo-500/20 touch-none"
         tabIndex={0}
         role="application"
         aria-label="Ring Gear Viewer"
       >
         <div className="absolute top-4 left-4 z-10 pointer-events-none">
-            <div className="bg-white/10 backdrop-blur-xl px-3 py-2 rounded-2xl border border-white/10 text-white shadow-lg">
+            <div className="bg-white/10 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 text-white shadow-lg">
                 <p className="font-bold text-sm flex items-center gap-2">
-                <Move3d size={14} className="text-indigo-300" />
+                <Move3d size={14} className="text-indigo-400" />
                 PA12 Carbon Fiber Ring
                 </p>
             </div>
