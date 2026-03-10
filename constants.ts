@@ -1,4 +1,4 @@
-import { SpecItem, ToolItem, ProcessStep } from './types';
+import { SpecItem, ToolItem, ProcessStep, BOMItem, SoftwareFeature } from './types';
 
 export const PROJECT_TITLE = "Omnidirectional Wheel Drive System";
 export const PROJECT_SUBTITLE = "Differential-Powered Drive & Steering Mechanism with Custom CNC-Machined Components";
@@ -43,4 +43,31 @@ export const CHART_DATA = [
   { name: '2k RPM', torque: 310, efficiency: 85 },
   { name: '2.3k RPM', torque: 205, efficiency: 78 },
   { name: '3k RPM', torque: 85, efficiency: 45 },
+];
+
+export const BOM: BOMItem[] = [
+  { part: "Brushless Motor (7k RPM)", quantity: 2, material: "N/A", source: "Off-the-shelf" },
+  { part: "Input Pinion (20T)", quantity: 2, material: "6061 Aluminum", source: "CNC Machined" },
+  { part: "Intermediate Gear (40T)", quantity: 2, material: "6061 Aluminum", source: "CNC Machined" },
+  { part: "Internal Ring Gear (120T)", quantity: 1, material: "PA12 CF Nylon", source: "Markforged 3D" },
+  { part: "Structural Base Plate", quantity: 2, material: "6061 Aluminum", source: "Waterjet Cut" },
+  { part: "Omni-Wheel Roller", quantity: 12, material: "TPU / Rubber", source: "Off-the-shelf" },
+];
+
+export const SOFTWARE_FEATURES: SoftwareFeature[] = [
+  { 
+    title: "Differential Kinematics", 
+    description: "Custom control algorithm that translates desired (X, Y, θ) velocities into independent motor RPMs for simultaneous drive and steering.",
+    icon: "Cpu"
+  },
+  { 
+    title: "PID Loop Tuning", 
+    description: "High-frequency feedback loop (1kHz) for precise position control and torque compensation under varying loads.",
+    icon: "Activity"
+  },
+  { 
+    title: "CAN Bus Communication", 
+    description: "Robust 1Mbps communication protocol between the central controller and motor drivers for low-latency command execution.",
+    icon: "Network"
+  }
 ];

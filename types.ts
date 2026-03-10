@@ -22,7 +22,15 @@ export interface ToolItem {
   category: 'software' | 'hardware' | 'material';
 }
 
-export enum GearType {
-  STRAIGHT = 'Straight Cut',
-  HELICAL = 'Helical',
+export interface BOMItem {
+  part: string;
+  quantity: number;
+  material: string;
+  source: string;
+}
+
+export interface SoftwareFeature {
+  title: string;
+  description: string;
+  icon: string;
 }

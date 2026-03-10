@@ -1,38 +1,35 @@
-import React from 'react';
 import { 
-  Projector, 
   Settings, 
-  Cpu, 
   Zap, 
   TrendingUp, 
   Wrench, 
   CheckCircle, 
   AlertTriangle,
-  Layers,
-  Factory,
-  ArrowRight
+  ArrowRight,
+  Cpu,
+  Activity,
+  Network,
+  ListTodo,
+  Rocket
 } from 'lucide-react';
 import { 
-  BarChart, 
-  Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
   ResponsiveContainer, 
   LineChart,
   Line
 } from 'recharts';
 import { 
-  PROJECT_TITLE, 
   PROJECT_SUBTITLE, 
   SPECS, 
   TOOLS, 
   PROCESS_STEPS,
-  CHART_DATA
+  CHART_DATA,
+  BOM,
+  SOFTWARE_FEATURES
 } from './constants';
-import { MainAssemblyViewer, GearComparisonViewer, RingGearViewer } from './components/ThreeViewers';
 
 function App() {
   return (
@@ -50,6 +47,8 @@ function App() {
           <nav className="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
             <a href="#overview" className="hover:text-indigo-600 transition-colors">Overview</a>
             <a href="#specs" className="hover:text-indigo-600 transition-colors">Specifications</a>
+            <a href="#software" className="hover:text-indigo-600 transition-colors">Software</a>
+            <a href="#bom" className="hover:text-indigo-600 transition-colors">BOM</a>
             <a href="#engineering" className="hover:text-indigo-600 transition-colors">Engineering</a>
             <a href="#results" className="hover:text-indigo-600 transition-colors">Results</a>
           </nav>
@@ -90,8 +89,18 @@ function App() {
             </div>
 
             <div className="lg:pl-8">
-               <div className="relative rounded-2xl p-1 bg-gradient-to-b from-white/10 to-transparent">
-                  <MainAssemblyViewer />
+               <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20 border border-white/10">
+                  <img 
+                    src="https://picsum.photos/seed/engineering/800/600" 
+                    alt="Omni-Wheel Assembly" 
+                    className="w-full h-[500px] object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                  <div className="absolute bottom-6 left-6">
+                    <p className="text-white font-bold text-lg">Omni-Wheel Assembly</p>
+                    <p className="text-indigo-300 text-sm">CAD Visualization</p>
+                  </div>
                </div>
             </div>
           </div>
@@ -334,8 +343,18 @@ function App() {
                             A critical decision point was choosing between helical and straight-cut gears. While helical gears offer smoother load transfer, straight-cut gears were selected to simplify the CAM setup for 3-axis machining.
                         </p>
                         
-                        {/* Interactive Gear Comparison */}
-                        <GearComparisonViewer />
+                        {/* Static Gear Comparison */}
+                        <div className="relative rounded-2xl overflow-hidden border border-slate-200 aspect-video">
+                            <img 
+                                src="https://picsum.photos/seed/gears/800/450" 
+                                alt="Gear Geometry Comparison" 
+                                className="w-full h-full object-cover"
+                                referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700">
+                                Straight Cut vs Helical Profile
+                            </div>
+                        </div>
                     </div>
 
                     <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
@@ -343,7 +362,17 @@ function App() {
                          <p className="text-slate-600 mb-6">
                             The large internal gear required a material with high impact resistance and self-lubricating properties. PA12 Nylon with chopped carbon fiber was used.
                          </p>
-                         <RingGearViewer />
+                         <div className="relative rounded-2xl overflow-hidden border border-slate-200 aspect-video">
+                            <img 
+                                src="https://picsum.photos/seed/ringgear/800/450" 
+                                alt="Ring Gear Fabrication" 
+                                className="w-full h-full object-cover"
+                                referrerPolicy="no-referrer"
+                            />
+                            <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700">
+                                PA12 Carbon Fiber Ring
+                            </div>
+                         </div>
                     </div>
                 </div>
 
@@ -382,6 +411,75 @@ function App() {
                             ))}
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        {/* --- Software & Control Section --- */}
+        <section id="software" className="space-y-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-2">Software & Control</h2>
+                    <p className="text-slate-600 max-w-2xl">
+                        The intelligence behind the hardware. A custom control stack designed for low-latency response and high-precision kinematics.
+                    </p>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+                {SOFTWARE_FEATURES.map((feature, idx) => {
+                    const Icon = feature.icon === 'Cpu' ? Cpu : feature.icon === 'Activity' ? Activity : Network;
+                    return (
+                        <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group">
+                            <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                <Icon className="w-6 h-6" />
+                            </div>
+                            <h3 className="font-bold text-slate-900 mb-3">{feature.title}</h3>
+                            <p className="text-sm text-slate-500 leading-relaxed">{feature.description}</p>
+                        </div>
+                    );
+                })}
+            </div>
+        </section>
+
+        {/* --- Bill of Materials --- */}
+        <section id="bom" className="space-y-10">
+            <div className="flex items-center space-x-4">
+                <div className="p-3 bg-slate-900 rounded-2xl text-white">
+                    <ListTodo className="w-6 h-6" />
+                </div>
+                <div>
+                    <h2 className="text-3xl font-bold text-slate-900">Bill of Materials</h2>
+                    <p className="text-slate-500">Comprehensive list of core components and fabrication sources.</p>
+                </div>
+            </div>
+
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-100">
+                                <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Part Name</th>
+                                <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Qty</th>
+                                <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Material</th>
+                                <th className="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Source</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-50">
+                            {BOM.map((item, idx) => (
+                                <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                                    <td className="px-8 py-5 text-sm font-semibold text-slate-900">{item.part}</td>
+                                    <td className="px-8 py-5 text-sm text-slate-600 font-mono">{item.quantity}</td>
+                                    <td className="px-8 py-5 text-sm text-slate-600">
+                                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-500 text-[10px] font-bold uppercase">
+                                            {item.material}
+                                        </span>
+                                    </td>
+                                    <td className="px-8 py-5 text-sm text-slate-600">{item.source}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -433,7 +531,47 @@ function App() {
              </div>
         </section>
 
-      </main>
+        {/* --- Future Iterations --- */}
+        <section className="grid md:grid-cols-2 gap-12 items-center py-12">
+            <div className="order-2 md:order-1">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-xs font-semibold uppercase tracking-wider mb-6">
+                    <Rocket className="w-3 h-3 mr-2" /> Roadmap
+                </div>
+                <h2 className="text-4xl font-bold text-slate-900 mb-6 leading-tight">Future Iterations & <br/>System Scaling</h2>
+                <p className="text-slate-600 text-lg leading-relaxed mb-8">
+                    The next phase of development focuses on weight reduction through topological optimization and the integration of absolute encoders for enhanced steering precision.
+                </p>
+                <div className="space-y-4">
+                    {[
+                        { title: "Topological Optimization", desc: "Reducing mass of the structural plates by 40% using generative design." },
+                        { title: "Absolute Encoders", desc: "Eliminating the need for homing sequences on startup." },
+                        { title: "4-Wheel Independent Drive", desc: "Scaling the single module to a full mobile platform." }
+                    ].map((item, i) => (
+                        <div key={i} className="flex gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-sm transition-all border border-transparent hover:border-slate-100">
+                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+                                {i + 1}
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900">{item.title}</h4>
+                                <p className="text-sm text-slate-500">{item.desc}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="order-1 md:order-2">
+                <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+                    <img 
+                        src="https://picsum.photos/seed/future/800/800" 
+                        alt="Future Concept" 
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-indigo-600/20 mix-blend-multiply"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
       <footer className="bg-white border-t border-slate-100 py-12">
           <div className="max-w-7xl mx-auto px-4 text-center">
