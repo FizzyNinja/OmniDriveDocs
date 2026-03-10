@@ -4,13 +4,6 @@ export interface SpecItem {
   unit?: string;
 }
 
-export interface CalculationStep {
-  label: string;
-  formula: string;
-  result: string;
-  note?: string;
-}
-
 export interface ProcessStep {
   title: string;
   description: string;
